@@ -93,12 +93,13 @@
                 android:id="@+id/playerShots"
                 android:layout_weight="1"
                 android:textSize="30dp"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:layout_column="3" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="# of Saves"
                 android:id="@+id/playerSaves"
                 android:layout_weight="1"
                 android:textAlignment="center"
@@ -233,9 +234,23 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Remove Team"
+            android:id="@+id/bRemoveTeam"
+            android:layout_gravity="bottom" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Add Player"
             android:id="@+id/bAddPlayer"
             android:layout_gravity="bottom|right" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove Player"
+            android:id="@+id/bRemovePlayer"
+            android:layout_gravity="bottom" />
 
     </LinearLayout>
 

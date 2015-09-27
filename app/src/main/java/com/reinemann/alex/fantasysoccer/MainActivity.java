@@ -12,8 +12,11 @@ import java.util.Hashtable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Hashtable<String, SoccerTeam> teams = new Hashtable<>();
+    public Hashtable<String, SoccerTeam> teams = new Hashtable<>();
     private int numTeams;
+
+    private String currentPlayer;
+    private String currentTeam;
 
     private Button bIncGoals;
     private Button bIncAssists;
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bIncRedCards;
     private Button bAddTeam;
     private Button bAddPlayer;
+    private Button bPosition;
+    private Button bRemoveTeam;
+    private Button bRemovePlayer;
 
 
     @Override
@@ -40,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bIncRedCards = (Button) findViewById(R.id.bIncreaseRedCards);
         bAddTeam = (Button) findViewById(R.id.bAddTeam);
         bAddPlayer = (Button) findViewById(R.id.bAddPlayer);
+        bPosition = (Button) findViewById(R.id.bChangePosition);
+        bRemovePlayer = (Button) findViewById(R.id.bRemovePlayer);
+        bRemoveTeam = (Button) findViewById(R.id.bRemoveTeam);
 
         bIncGoals.setOnClickListener(this);
         bIncAssists.setOnClickListener(this);
@@ -50,6 +59,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bIncRedCards.setOnClickListener(this);
         bAddPlayer.setOnClickListener(this);
         bAddTeam.setOnClickListener(this);
+        bPosition.setOnClickListener(this);
+        bRemoveTeam.setOnClickListener(this);
+        bRemovePlayer.setOnClickListener(this);
+
+
+        teams.put("a", new SoccerTeam("a"));
+        teams.put("b", new SoccerTeam("b"));
+        teams.put("c", new SoccerTeam("c"));
+
+        teams.get("a").addPLayer("alf", "big", 1, 1);
+        teams.get("a").addPLayer("beta", "Small", 2, 2);
+        teams.get("a").addPLayer("Sam", "Kev", 3, 2);
+        teams.get("a").addPLayer("Trey", "Pos", 4, 4);
+
+        currentPlayer = "bigalf";
+        currentTeam = "a";
+
+        numTeams = 3;
+
     }
 
     @Override
@@ -76,6 +104,67 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        if(bIncGoals.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpGoals();
+        }
+        else if(bIncAssists.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpAssists();
+        }
+        else if(bIncShots.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpShots();
+        }
+        else if(bIncSaves.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpSaves();
+        }
+        else if(bIncFouls.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpFouls();
+        }
+        else if(bIncYelCards.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpYellowCards();
+        }
+        else if(bIncRedCards.isPressed())
+        {
+            teams.get(currentTeam).players.get(currentPlayer).bumpRedCards();
+        }
+        else if(bPosition.isPressed())
+        {
+            int pos = teams.get(currentTeam).players.get(currentPlayer).getPositionNum();
+
+            pos++;
+
+            if(pos > 11)
+            {
+                pos = 1;
+            }
+            teams.get(currentTeam).players.get(currentPlayer).setPositionNum(pos);
+        }
+        else if(bAddTeam.isPressed())
+        {
+            numTeams++;
+        }
+        else if(bAddPlayer.isPressed())
+        {
+
+        }
+        else if(bRemovePlayer.isPressed())
+        {
+            teams.get(currentTeam).removePlayer(currentPlayer);
+        }
+        else if(bRemoveTeam.isPressed())
+        {
+            if(numTeams != 0)
+            {
+                teams.remove(currentTeam);
+                numTeams--;
+            }
+        }
 
     }
 }

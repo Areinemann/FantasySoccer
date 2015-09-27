@@ -31,9 +31,9 @@ public class SoccerTeam {
     }
 
     //TODO
-    public SoccerPlayer getPlayer()
+    public SoccerPlayer getPlayer(String key)
     {
-        return null;
+        return players.get(key);
     }
 
     public int getNumPLayers()
@@ -50,7 +50,7 @@ public class SoccerTeam {
      *
      * @return          false if player already exists, true if player successfully added
      */
-    public boolean addPLayer(String first, String last, int uniform)
+    public boolean addPLayer(String first, String last, int uniform, int position)
     {
 
         String key = last.trim() + first.trim();
@@ -61,8 +61,10 @@ public class SoccerTeam {
         }
         else
         {
-            players.put(key, new SoccerPlayer(first, last, uniform));
+            players.put(key, new SoccerPlayer(first, last, uniform, position));
+
             numPLayers++;
+
             return true;
         }
 
@@ -77,9 +79,8 @@ public class SoccerTeam {
      *
      * @return      true if player removed false if player not found
      */
-    public boolean removePlayer(String first, String last)
+    public boolean removePlayer(String key)
     {
-        String key = last.trim() + first.trim();
 
         if(players.containsKey(key))
         {

@@ -72,6 +72,14 @@ public class SoccerPlayer {
     public int getRedCards() {
         return redCards;
     }
+    public int getPositionNum()
+    {
+        return positionNum;
+    }
+    public String getName()
+    {
+        return lastName + firstName;
+    }
 
     // change uniform number to new one
     public void changeUniform(int newNumber) {
@@ -99,6 +107,10 @@ public class SoccerPlayer {
     }
     public void bumpRedCards() {
         redCards++;
+    }
+    public void setPositionNum(int position)
+    {
+        positionNum = position;
     }
 
 }
