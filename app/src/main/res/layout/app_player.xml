@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Player"
+            android:id="@+id/PlayerCreatorTitle"
+            android:textAlignment="center"
+            android:textSize="60dp"
+            android:gravity="center|top" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:id="@+id/firstNameTitle"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:id="@+id/lastNameTitle"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uniform Number"
+            android:id="@+id/uniformTitle"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Position"
+            android:id="@+id/positionTitle"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstNameCreator"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:maxLines="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:singleLine="true"
+            android:id="@+id/lastNameCreator"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:singleLine="true"
+            android:id="@+id/uniformNumberCreator"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinPositionChooser" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Player"
+            android:id="@+id/createPlayer"
+            android:textSize="30dp"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+
+</LinearLayout>

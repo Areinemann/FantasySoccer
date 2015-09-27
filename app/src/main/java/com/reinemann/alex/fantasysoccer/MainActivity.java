@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Spinner spinTeamList;
     private Spinner spinPlayerList;
 
+    private ImageView imPlayerPic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         spinTeamList = (Spinner) findViewById(R.id.teamList);
         spinPlayerList = (Spinner) findViewById(R.id.playerList);
+
+        imPlayerPic = (ImageView) findViewById(R.id.playerPicture);
 
         bIncGoals.setOnClickListener(this);
         bIncAssists.setOnClickListener(this);
