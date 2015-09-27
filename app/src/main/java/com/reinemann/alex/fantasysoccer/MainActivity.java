@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.security.PrivateKey;
 import java.util.Hashtable;
+import java.util.PriorityQueue;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     public Hashtable<String, SoccerTeam> teams = new Hashtable<>();
     private int numTeams;
@@ -31,6 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bRemoveTeam;
     private Button bRemovePlayer;
 
+    private TextView tUniformNumber;
+    private TextView tNumGoals;
+    private TextView tNumSaves;
+    private TextView tNumShots;
+    private TextView tNumAssists;
+    private TextView tNumFouls;
+    private TextView tNumYelCards;
+    private TextView tNumRedCards;
+    private TextView tPosition;
+
+    private Spinner spinTeamList;
+    private Spinner spinPlayerList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +68,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bRemovePlayer = (Button) findViewById(R.id.bRemovePlayer);
         bRemoveTeam = (Button) findViewById(R.id.bRemoveTeam);
 
+        tUniformNumber = (TextView) findViewById(R.id.uniformNumber);
+        tNumGoals = (TextView) findViewById(R.id.playerGoals);
+        tNumSaves = (TextView) findViewById(R.id.playerSaves);
+        tNumShots = (TextView) findViewById(R.id.playerShots);
+        tNumAssists = (TextView) findViewById(R.id.playerAssists);
+        tNumFouls = (TextView) findViewById(R.id.playerFouls);
+        tNumYelCards = (TextView) findViewById(R.id.playerYellowCards);
+        tNumRedCards = (TextView) findViewById(R.id.playerRedCards);
+        tPosition = (TextView) findViewById(R.id.playerPosition);
+
+        spinTeamList = (Spinner) findViewById(R.id.teamList);
+        spinPlayerList = (Spinner) findViewById(R.id.playerList);
+
         bIncGoals.setOnClickListener(this);
         bIncAssists.setOnClickListener(this);
         bIncShots.setOnClickListener(this);
@@ -62,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bPosition.setOnClickListener(this);
         bRemoveTeam.setOnClickListener(this);
         bRemovePlayer.setOnClickListener(this);
+
+        spinTeamList.setOnItemSelectedListener(this);
+        spinPlayerList.setOnItemSelectedListener(this);
 
 
         teams.put("a", new SoccerTeam("a"));
@@ -77,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentTeam = "a";
 
         numTeams = 3;
+
+        fillTextFields();
 
     }
 
@@ -165,6 +201,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numTeams--;
             }
         }
+
+        fillTextFields();
+    }
+
+
+    public void fillTextFields()
+    {
+        int temp = teams.get(currentTeam).players.get(currentPlayer).getUniform();
+        tUniformNumber.setText("Uniform " + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getGoals();
+        tNumGoals.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getAssists();
+        tNumAssists.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getShots();
+        tNumShots.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getSaves();
+        tNumSaves.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getFouls();
+        tNumFouls.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getYellowCards();
+        tNumYelCards.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getRedCards();
+        tNumRedCards.setText("" + temp);
+        temp = teams.get(currentTeam).players.get(currentPlayer).getPositionNum();
+        tPosition.setText("" + temp);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }
