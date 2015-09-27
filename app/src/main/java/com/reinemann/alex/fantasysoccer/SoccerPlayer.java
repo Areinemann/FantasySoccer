@@ -9,6 +9,7 @@ public class SoccerPlayer {
     private String firstName; // first name
     private String lastName; // last name
     private int uniformNum; // uniform number
+    private int positionNum;
     private int goalsScored; // goals scored
     private int assists; // assists
     private int shots; // shots
@@ -22,13 +23,15 @@ public class SoccerPlayer {
      * are set to zero.
      *
      * @param first first name
+     * @param position the position the player plays
      * @param last last name
      * @param uniform uniform number
      */
-    public SoccerPlayer(String first, String last, int uniform) {
+    public SoccerPlayer(String first, String last, int uniform, int position) {
         firstName = first;
         lastName = last;
         uniformNum = uniform;
+
         goalsScored = 0;
         assists = 0;
         shots = 0;
