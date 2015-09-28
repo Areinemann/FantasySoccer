@@ -21,35 +21,31 @@
 
             <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/teamList"
-                    android:spinnerMode="dropdown"
-                    android:dropDownWidth="match_parent"
-                    android:scrollIndicators="left"
-                    android:focusableInTouchMode="false" />
+                    android:layout_weight="1" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/teamName"
-                    android:textSize="30dp" />
-            </TableRow>
-
+                    android:id="@+id/playerList" />
+            </TableLayout>
         </TableLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/teamPicture"
+            android:id="@+id/playerPicture"
             android:layout_weight="1"
             android:background="#5a5a59" />
     </LinearLayout>
@@ -226,9 +222,22 @@
                 android:id="@+id/bChangePosition"
                 android:layout_weight="1"
                 android:textSize="25dp" />
+
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SwitchTeamSelector" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -240,17 +249,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Team"
-            android:id="@+id/bAddTeam"
+            android:text="Switch Team"
+            android:id="@+id/bSwitchTeam"
             android:layout_gravity="bottom|right"
-            android:textSize="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remove Team"
-            android:id="@+id/bRemoveTeam"
-            android:layout_gravity="bottom"
             android:textSize="20dp" />
 
         <Button

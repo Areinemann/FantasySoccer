@@ -7,25 +7,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
-import java.util.ArrayList;
+
 import java.util.Hashtable;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class PlayerViewActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
     public  static Hashtable<String, SoccerTeam> teams = new Hashtable<>();
     private int numTeams;
-    private ArrayList<String> teamNames;
 
     private String currentPlayer;
     private String currentTeam;
-    private int    currentPosition;
 
     private Button bIncGoals;
     private Button bIncAssists;
@@ -37,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bAddTeam;
     private Button bAddPlayer;
     private Button bPosition;
-    private Button bRemoveTeam;
     private Button bRemovePlayer;
 
     private TextView tUniformNumber;
@@ -49,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tNumYelCards;
     private TextView tNumRedCards;
     private TextView tPosition;
-    private TextView tTeamName;
 
     private Spinner spinTeamList;
+    private Spinner spinPlayerList;
 
     private ImageView imPlayerPic;
 
@@ -59,10 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        teamNames = new ArrayList<>();
-
+        setContentView(R.layout.activity_player_view);
 
         bIncGoals = (Button) findViewById(R.id.bIncreaseGoals);
         bIncAssists =  (Button) findViewById(R.id.bIncreaseAssists);
@@ -75,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bAddPlayer = (Button) findViewById(R.id.bAddPlayer);
         bPosition = (Button) findViewById(R.id.bChangePosition);
         bRemovePlayer = (Button) findViewById(R.id.bRemovePlayer);
-        bRemoveTeam = (Button) findViewById(R.id.bRemoveTeam);
 
         tUniformNumber = (TextView) findViewById(R.id.uniformNumber);
         tNumGoals = (TextView) findViewById(R.id.playerGoals);
@@ -86,9 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tNumYelCards = (TextView) findViewById(R.id.playerYellowCards);
         tNumRedCards = (TextView) findViewById(R.id.playerRedCards);
         tPosition = (TextView) findViewById(R.id.playerPosition);
-        tTeamName = (TextView) findViewById(R.id.teamName);
 
         spinTeamList = (Spinner) findViewById(R.id.teamList);
+        spinPlayerList = (Spinner) findViewById(R.id.playerList);
 
         imPlayerPic = (ImageView) findViewById(R.id.playerPicture);
 
@@ -103,39 +95,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bAddPlayer.setOnClickListener(this);
         bAddTeam.setOnClickListener(this);
         bPosition.setOnClickListener(this);
-        bRemoveTeam.setOnClickListener(this);
         bRemovePlayer.setOnClickListener(this);
 
-        ArrayAdapter Adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teamNames);
-        Adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        spinTeamList.setAdapter(Adapter1);
-
         spinTeamList.setOnItemSelectedListener(this);
+        spinPlayerList.setOnItemSelectedListener(this);
 
 
         teams.put("a", new SoccerTeam("a"));
         teams.put("b", new SoccerTeam("b"));
         teams.put("c", new SoccerTeam("c"));
-        teamNames.add("a");
-        teamNames.add("b");
-        teamNames.add("c");
+
 
 
         teams.get("a").addPLayer("alf", "big", 1, 1);
         teams.get("a").addPLayer("beta", "Small", 2, 2);
         teams.get("a").addPLayer("Sam", "Kev", 3, 2);
         teams.get("a").addPLayer("Trey", "Pos", 4, 4);
-        teams.get("b").addPLayer("alf", "big", 1, 1);
 
         currentPlayer = "bigalf";
         currentTeam = "a";
-        currentPosition = 0;
 
         numTeams = 3;
 
         fillTextFields();
-        tTeamName.setText(currentTeam);
 
     }
 
@@ -210,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(bAddPlayer.isPressed())
         {
-            Intent i = new Intent(MainActivity.this,AddPlayerActivity.class);
+            Intent i = new Intent(PlayerViewActivity.this,AddPlayerActivity.class);
 
             i.putExtra("teamToGive", currentTeam);
 
@@ -221,18 +203,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             teams.get(currentTeam).removePlayer(currentPlayer);
             currentPlayer = null;
         }
-        else if(bRemoveTeam.isPressed())
-        {
-            if(numTeams != 0) {
-                teams.remove(currentTeam);
-                teamNames.remove(currentPosition);
-                numTeams--;
-                if (currentPosition >= numTeams) {
-                    currentTeam = teamNames.get(currentPosition);
-                }
-
-            }
-        }
 
         fillTextFields();
     }
@@ -240,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void fillTextFields()
     {
-
         int temp = teams.get(currentTeam).players.get(currentPlayer).getUniform();
         tUniformNumber.setText("Uniform " + temp);
         temp = teams.get(currentTeam).players.get(currentPlayer).getGoals();
@@ -263,11 +232,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        currentTeam = parent.getItemAtPosition(position).toString();
-
-        tTeamName.setText("" + currentTeam);
-
 
     }
 
