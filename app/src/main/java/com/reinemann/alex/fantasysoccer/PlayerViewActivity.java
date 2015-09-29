@@ -330,6 +330,15 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
             tNumRedCards.setText("" + temp);
             temp = teams.get(currentTeam).players.get(currentPlayer).getPositionNum();
             tPosition.setText("" + temp);
+
+            if(teams.get(currentTeam).players.get(currentPlayer).getPlayerPic() != 0)
+            {
+                imPlayerPic.setImageResource(teams.get(currentTeam).players.get(currentPlayer).getPlayerPic());
+            }
+            else
+            {
+                imPlayerPic.setImageResource(R.drawable.silhouette);
+            }
         }
         else
         {
@@ -343,6 +352,7 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
             tNumYelCards.setText("");
             tNumRedCards.setText("");
             tPosition.setText("");
+            imPlayerPic.setImageResource(R.drawable.silhouette);
         }
     }
 

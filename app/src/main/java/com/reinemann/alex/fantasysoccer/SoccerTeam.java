@@ -19,15 +19,16 @@ public class SoccerTeam implements Serializable {
     private     int numLosses;
     private     int numDraws;
 
-    private     Drawable teamPic;
+    private     int teamPic;
 
     /**
      * SoccerTeam constructor.  The parameter is copied in. Remaining field
      * is set to zero.
      *
      * @param name the name of the team to create.
+     * @param instImage
      */
-    public SoccerTeam(String name, Drawable instImage)
+    public SoccerTeam(String name, int instImage)
     {
         numPlayers = 0;
         teamName = name;
@@ -81,7 +82,7 @@ public class SoccerTeam implements Serializable {
         return hold;
     }
 
-    public Drawable getTeamPic()
+    public int getTeamPic()
     {
         return teamPic;
     }
@@ -95,7 +96,7 @@ public class SoccerTeam implements Serializable {
      *
      * @return          false if player already exists, true if player successfully added
      */
-    public boolean addPLayer(String first, String last, int uniform, int position)
+    public boolean addPlayer(String first, String last, int uniform, int position, int image)
     {
 
         String key = last.trim() + first.trim();
@@ -106,7 +107,7 @@ public class SoccerTeam implements Serializable {
         }
         else
         {
-            players.put(key, new SoccerPlayer(first, last, uniform, position));
+            players.put(key, new SoccerPlayer(first, last, uniform, position, image));
 
             numPlayers++;
 
@@ -172,7 +173,7 @@ public class SoccerTeam implements Serializable {
         numDraws++;
     }
 
-    public void setTeamPic(Drawable newPic)
+    public void setTeamPic(int newPic)
     {
         teamPic = newPic;
     }

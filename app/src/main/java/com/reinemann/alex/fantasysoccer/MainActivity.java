@@ -1,7 +1,6 @@
 package com.reinemann.alex.fantasysoccer;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -77,28 +76,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bRemoveTeam.setOnClickListener(this);
         bCycleTeam.setOnClickListener(this);
 
-      //  Drawable temp = g
-
-        teams.put("a", new SoccerTeam("a",null));
-        teams.put("b", new SoccerTeam("b",null));
-        teams.put("c", new SoccerTeam("c",null));
-        teams.put("d", new SoccerTeam("d",null));
+        teams.put("a", new SoccerTeam("a", R.drawable.uplogo));
+        teams.put("b", new SoccerTeam("b", R.drawable.shield));
+        teams.put("c", new SoccerTeam("c", R.drawable.uef));
+        teams.put("d", new SoccerTeam("d", R.drawable.cybran));
         teamNames.add("a");
         teamNames.add("b");
         teamNames.add("c");
         teamNames.add("d");
 
 
-        teams.get("a").addPLayer("alf", "big", 1, 1);
-        teams.get("a").addPLayer("beta", "Small", 2, 2);
-        teams.get("a").addPLayer("Sam", "Kev", 3, 2);
-        teams.get("a").addPLayer("Trey", "Pos", 4, 4);
-        teams.get("b").addPLayer("alf", "big", 1, 1);
+        teams.get("a").addPlayer("alf", "big", 1, 1, R.drawable.alf);
+        teams.get("a").addPlayer("beta", "Small", 2, 2, R.drawable.blue);
+        teams.get("a").addPlayer("Sam", "Kev", 3, 2, 0);
+        teams.get("a").addPlayer("Trey", "Pos", 4, 4, 0);
+        teams.get("b").addPlayer("Monarch", "King", 1, 1, R.drawable.king);
+        teams.get("b").addPlayer("Mad King","Henry", 11,11,R.drawable.henry);
+        teams.get("b").addPlayer("Rhianne", "Burk", 2,2,R.drawable.burk);
+        teams.get("c").addPlayer("Samantha", "Clark", 1, 1,R.drawable.clark);
+        teams.get("c").addPlayer("Zachary", "Arnold", 2,2,R.drawable.zach);
+        teams.get("c").addPlayer("Allen", "Riley", 3,3,R.drawable.riley);
+        teams.get("d").addPlayer("Gustaf", "Brackman", 1,1,R.drawable.brackman);
+        teams.get("d").addPlayer("Ivanna", "Dostya", 2,2,R.drawable.dostya);
+        teams.get("d").addPlayer("Gauge","", 4,4,R.drawable.gauge);
 
         currentTeam = "a";
         currentPosition = 0;
 
-        numTeams = 3;
+        numTeams = 4;
 
         fillTextFields();
         tTeamName.setText(currentTeam);
@@ -169,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(bAddTeam.isPressed())
         {
             String newName = etNewTeamName.getText().toString();
-            teams.put(newName,new SoccerTeam(newName,null));
+            teams.put(newName,new SoccerTeam(newName, 0));
             teamNames.add(newName);
             numTeams++;
         }
@@ -218,7 +223,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         temp = teams.get(currentTeam).getNumPlayers();
         tNumPlayers.setText(temp + " players");
 
-        imTeamPic.setImageDrawable(teams.get(currentTeam).getTeamPic());
+        if(teams.get(currentTeam).getTeamPic() != 0)
+        {
+            imTeamPic.setImageResource(teams.get(currentTeam).getTeamPic());
+        }
+        else
+        {
+            imTeamPic.setImageResource(R.drawable.seriph);
+        }
     }
 
     @Override

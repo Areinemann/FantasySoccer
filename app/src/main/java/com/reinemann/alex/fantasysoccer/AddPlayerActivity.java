@@ -43,7 +43,6 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
         etFirstName = (EditText) findViewById(R.id.firstNameCreator);
         etLastName = (EditText) findViewById(R.id.lastNameCreator);
         etUniform = (EditText) findViewById(R.id.uniformNumberCreator);
-        spinPosition = (Spinner) findViewById(R.id.spinPositionChooser);
 
         bCreate.setOnClickListener(this);
         bClose.setOnClickListener(this);
@@ -81,7 +80,7 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
             int uniform =  Integer.parseInt(etUniform.getText().toString());
             int position = 1;
 
-            i.putExtra("New Player", new SoccerPlayer(firstName,lastName,uniform,position));
+            i.putExtra("New Player", new SoccerPlayer(firstName,lastName,uniform,position, 0));
 
             setResult(50,i);
 

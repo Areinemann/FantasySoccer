@@ -19,6 +19,7 @@ public class SoccerPlayer implements Serializable {
     private int saves; // saves made
     private int yellowCards; // yellow cards shown
     private int redCards; // red cards shown
+    private int playerPic;
 
     /**
      * SoccerPlayer constructor.  The parameters are copied in. Remaining fields
@@ -29,11 +30,11 @@ public class SoccerPlayer implements Serializable {
      * @param last last name
      * @param uniform uniform number
      */
-    public SoccerPlayer(String first, String last, int uniform, int position) {
+    public SoccerPlayer(String first, String last, int uniform, int position, int image) {
         firstName = first.trim();
         lastName = last.trim();
         uniformNum = uniform;
-
+        positionNum = position;
         goalsScored = 0;
         assists = 0;
         shots = 0;
@@ -41,6 +42,7 @@ public class SoccerPlayer implements Serializable {
         saves = 0;
         yellowCards = 0;
         redCards = 0;
+        playerPic = image;
     }
 
     // "get methods"
@@ -83,6 +85,11 @@ public class SoccerPlayer implements Serializable {
         return lastName + firstName;
     }
 
+    public int getPlayerPic()
+    {
+        return playerPic;
+    }
+
     // change uniform number to new one
     public void changeUniform(int newNumber) {
         uniformNum = newNumber;
@@ -113,6 +120,11 @@ public class SoccerPlayer implements Serializable {
     public void setPositionNum(int position)
     {
         positionNum = position;
+    }
+
+    public void setPlayerPic(int image)
+    {
+        playerPic = image;
     }
 
 }
