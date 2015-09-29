@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bViewPlayers;
     private Button bRemoveTeam;
     private Button bCycleTeam;
+    private Button bGame;
 
     private TextView tNumWins;
     private TextView tNumLosses;
@@ -50,13 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         teamNames = new ArrayList<>();
 
 
-        bIncWins = (Button) findViewById(R.id.bIncreaseWins);
-        bIncLosses =  (Button) findViewById(R.id.bIncreaseLosses);
-        bIncDraws = (Button) findViewById(R.id.bIncreaseDraws);
-        bViewPlayers = (Button) findViewById(R.id.bViewPlayers);
-        bAddTeam = (Button) findViewById(R.id.bAddTeam);
-        bRemoveTeam = (Button) findViewById(R.id.bRemoveTeam);
-        bCycleTeam = (Button) findViewById(R.id.bCycleTeams);
+        bIncWins        = (Button) findViewById(R.id.bIncreaseWins);
+        bIncLosses      =  (Button) findViewById(R.id.bIncreaseLosses);
+        bIncDraws       = (Button) findViewById(R.id.bIncreaseDraws);
+        bViewPlayers    = (Button) findViewById(R.id.bViewPlayers);
+        bAddTeam        = (Button) findViewById(R.id.bAddTeam);
+        bRemoveTeam     = (Button) findViewById(R.id.bRemoveTeam);
+        bCycleTeam      = (Button) findViewById(R.id.bCycleTeams);
+        bGame           = (Button) findViewById(R.id.bGame);
 
         tNumPlayers = (TextView) findViewById(R.id.teamPLayers);
         tNumWins = (TextView) findViewById(R.id.teamWins);
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bViewPlayers.setOnClickListener(this);
         bRemoveTeam.setOnClickListener(this);
         bCycleTeam.setOnClickListener(this);
+        bGame.setOnClickListener(this);
 
         teams.put("a", new SoccerTeam("a", R.drawable.uplogo));
         teams.put("b", new SoccerTeam("b", R.drawable.shield));
@@ -173,10 +176,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(bAddTeam.isPressed())
         {
-            String newName = etNewTeamName.getText().toString();
-            teams.put(newName,new SoccerTeam(newName, 0));
-            teamNames.add(newName);
-            numTeams++;
+            if(!etNewTeamName.getText().toString().isEmpty())
+            {
+                String newName = etNewTeamName.getText().toString();
+                teams.put(newName, new SoccerTeam(newName, 0));
+                teamNames.add(newName);
+                currentTeam = newName;
+                currentPosition = numTeams;
+                numTeams++;
+            }
         }
         else if(bRemoveTeam.isPressed())
         {
@@ -202,6 +210,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tTeamName.setText(currentTeam);
 
             }
+        }
+
+        else if(bGame.isPressed())
+        {
+            Intent intent = new Intent(MainActivity.this,SoccerFieldActivity.class);
+
+            startActivity(intent);
         }
 
         if(!bViewPlayers.isPressed())

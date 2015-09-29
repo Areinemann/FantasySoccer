@@ -408,22 +408,21 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
         super.onActivityResult(requestCode,resultCode,data);
 
         if(requestCode == 100)
-        {
-            if(resultCode == 50)
-            {
+            if (resultCode == 50) {
                 SoccerPlayer sp = (SoccerPlayer) data.getSerializableExtra("New Player");
-                teams.get(currentTeam).addPlayer(sp);
-                if(teamNames.add(sp.getName()))
+
+                if (teams.get(currentTeam).addPlayer(sp))
                 {
+                    currentPlayer = sp.getName();
+                    currentPlayerPosition = teams.get(currentTeam).getPlayerPosition(sp);
                     hasChanged = true;
-                    Toast.makeText(getApplicationContext(),"Player successfully added", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Player successfully added", Toast.LENGTH_LONG);
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Player not added", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Player not added", Toast.LENGTH_LONG);
                 }
             }
-        }
     }
 
 }

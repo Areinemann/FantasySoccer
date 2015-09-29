@@ -24,6 +24,10 @@
             android:name=".PlayerViewActivity"
             android:label="@string/title_activity_player_view" >
         </activity>
+        <activity
+            android:name=".SoccerFieldActivity"
+            android:label="@string/title_activity_socer_field" >
+        </activity>
     </application>
 
 </manifest>

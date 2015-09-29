@@ -183,6 +183,13 @@
             android:layout_gravity="bottom|right"
             android:textSize="20dp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Game"
+            android:id="@+id/bGame"
+            android:textSize="20dp" />
+
     </LinearLayout>
 
 </LinearLayout>

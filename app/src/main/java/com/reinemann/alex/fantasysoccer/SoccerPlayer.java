@@ -127,4 +127,9 @@ public class SoccerPlayer implements Serializable {
         playerPic = image;
     }
 
+    public boolean equals(SoccerPlayer sp)
+    {
+        return getName().equals(sp.getName());
+    }
+
 }

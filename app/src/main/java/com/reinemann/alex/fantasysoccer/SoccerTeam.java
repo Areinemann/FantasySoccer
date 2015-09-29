@@ -158,6 +158,20 @@ public class SoccerTeam implements Serializable {
         }
     }
 
+    public int getPlayerPosition(SoccerPlayer sp)
+    {
+        int i = 0;
+        for (SoccerPlayer temp: players.values())
+        {
+            if(temp.equals(sp))
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
     public void increaseWins()
     {
         numWins++;
