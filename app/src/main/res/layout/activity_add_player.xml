@@ -97,7 +97,6 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="New Text"
             android:id="@+id/playerPosition"
             android:layout_weight="1"
             android:textSize="@dimen/abc_text_size_large_material" />

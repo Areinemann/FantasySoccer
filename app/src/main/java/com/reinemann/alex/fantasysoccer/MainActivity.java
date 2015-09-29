@@ -91,13 +91,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         teams.get("a").addPlayer("Sam", "Kev", 3, 2, 0);
         teams.get("a").addPlayer("Trey", "Pos", 4, 4, 0);
         teams.get("b").addPlayer("Monarch", "King", 1, 1, R.drawable.king);
-        teams.get("b").addPlayer("Mad King","Henry", 11,11,R.drawable.henry);
+        teams.get("b").addPlayer("Mad King", "Henry", 11, 11, R.drawable.henry);
         teams.get("b").addPlayer("Rhianne", "Burk", 2,2,R.drawable.burk);
-        teams.get("c").addPlayer("Samantha", "Clark", 1, 1,R.drawable.clark);
-        teams.get("c").addPlayer("Zachary", "Arnold", 2,2,R.drawable.zach);
+        teams.get("c").addPlayer("Samantha", "Clark", 1, 1, R.drawable.clark);
+        teams.get("c").addPlayer("Zachary", "Arnold", 2, 2, R.drawable.zach);
         teams.get("c").addPlayer("Allen", "Riley", 3,3,R.drawable.riley);
-        teams.get("d").addPlayer("Gustaf", "Brackman", 1,1,R.drawable.brackman);
-        teams.get("d").addPlayer("Ivanna", "Dostya", 2,2,R.drawable.dostya);
+        teams.get("d").addPlayer("Gustaf", "Brackman", 1, 1, R.drawable.brackman);
+        teams.get("d").addPlayer("Ivanna", "Dostya", 2, 2, R.drawable.dostya);
         teams.get("d").addPlayer("Gauge","", 4,4,R.drawable.gauge);
 
         currentTeam = "a";
@@ -237,5 +237,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 110)
+        {
+            if(resultCode == 112)
+            {
+                teams.clear();
+
+                for(int i = 0; i < numTeams; i++)
+                {
+                    teams.put(teamNames.get(i), (SoccerTeam) data.getSerializableExtra(teamNames.get(i)));
+                }
+            }
+        }
     }
 }

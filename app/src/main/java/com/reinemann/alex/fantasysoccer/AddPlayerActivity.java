@@ -11,21 +11,25 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class AddPlayerActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class AddPlayerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button bCreate,
-            bClose;
+                   bClose,
+                   bChangePosition;
 
     private EditText etFirstName,
             etLastName,
             etUniform;
 
-    private Spinner spinPosition;
+    private TextView tPosition;
+
+    private int position = 0;
 
     String teamToUse;
     Intent i;
@@ -40,13 +44,15 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
 
         bCreate = (Button) findViewById(R.id.createPlayer);
         bClose = (Button) findViewById(R.id.goBack);
+        bChangePosition = (Button) findViewById(R.id.bChangePosition);
         etFirstName = (EditText) findViewById(R.id.firstNameCreator);
         etLastName = (EditText) findViewById(R.id.lastNameCreator);
         etUniform = (EditText) findViewById(R.id.uniformNumberCreator);
+        tPosition = (TextView) findViewById(R.id.playerPosition);
 
         bCreate.setOnClickListener(this);
         bClose.setOnClickListener(this);
-        spinPosition.setOnItemSelectedListener(this);
+        bChangePosition.setOnClickListener(this);
     }
 
     @Override
@@ -73,12 +79,20 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if(bCreate.isPressed())
+        if(bChangePosition.isPressed())
+        {
+            position++;
+            if(position == 11)
+            {
+                position = 0;
+            }
+            fillBox();
+        }
+        else if(bCreate.isPressed())
         {
             String firstName = etFirstName.getText().toString();
             String lastName = etLastName.getText().toString();
             int uniform =  Integer.parseInt(etUniform.getText().toString());
-            int position = 1;
 
             i.putExtra("New Player", new SoccerPlayer(firstName,lastName,uniform,position, 0));
 
@@ -96,13 +110,45 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+    private void fillBox()
+    {
+        switch (position)
+        {
+            case (0):
+            {
+                tPosition.setText("GoalKeeper");
+                break;
+            }
+            case(1):
+            {
+                tPosition.setText("Sweeper");
+                break;
+            }
+            case(2):{}
+            case(3):
+            {
+                tPosition.setText("Center-Back");
+                break;
+            }
+            case(4):{}
+            case(5):
+            {
+                tPosition.setText("Wing-back");
+                break;
+            }
+            case(6):{}
+            case(7):{}
+            case(8):
+            {
+                tPosition.setText("Centre Midfield");
+                break;
+            }
+            case(9):{}
+            case(10):
+            {
+                tPosition.setText("Centre Forward");
+                break;
+            }
+        }
     }
 }

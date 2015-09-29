@@ -245,13 +245,18 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
 
             if(pos > 11)
             {
-                pos = 1;
+                pos = 0;
             }
             teams.get(currentTeam).players.get(currentPlayer).setPositionNum(pos);
     }
         else if(bSwitchTeam.isPressed())
         {
-            numTeams++;
+            SoccerPlayer sp = teams.get(currentTeam).getPlayer(currentPlayer);
+            teams.get(currentSwitch).addPlayer(sp);
+            teams.get(currentTeam).removePlayer(currentPlayer);
+            currentTeam = currentSwitch;
+            currentPosition = currentSwitchingPos;
+            tSwitchingTeam.setText("");
         }
         else if(bAddPlayer.isPressed())
         {
@@ -311,9 +316,10 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
     {
         tTeamName.setText(currentTeam);
         if (teams.get(currentTeam).getNumPlayers() > 0) {
-            tPlayerName.setText(currentPlayer);
+            String name = teams.get(currentTeam).players.get(currentPlayer).getFirstName() + " " + teams.get(currentTeam).players.get(currentPlayer).getLastName();
+            tPlayerName.setText(name);
             int temp = teams.get(currentTeam).players.get(currentPlayer).getUniform();
-            tUniformNumber.setText("Uniform " + temp);
+            tUniformNumber.setText("" + temp);
             temp = teams.get(currentTeam).players.get(currentPlayer).getGoals();
             tNumGoals.setText("" + temp);
             temp = teams.get(currentTeam).players.get(currentPlayer).getAssists();
@@ -327,9 +333,6 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
             temp = teams.get(currentTeam).players.get(currentPlayer).getYellowCards();
             tNumYelCards.setText("" + temp);
             temp = teams.get(currentTeam).players.get(currentPlayer).getRedCards();
-            tNumRedCards.setText("" + temp);
-            temp = teams.get(currentTeam).players.get(currentPlayer).getPositionNum();
-            tPosition.setText("" + temp);
 
             if(teams.get(currentTeam).players.get(currentPlayer).getPlayerPic() != 0)
             {
@@ -338,6 +341,45 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
             else
             {
                 imPlayerPic.setImageResource(R.drawable.silhouette);
+            }
+
+            switch (teams.get(currentTeam).getPlayer(currentPlayer).getPositionNum())
+            {
+                case (0):
+                {
+                    tPosition.setText("GoalKeeper");
+                    break;
+                }
+                case(1):
+                {
+                    tPosition.setText("Sweeper");
+                    break;
+                }
+                case(2):{}
+                case(3):
+                {
+                    tPosition.setText("Center-Back");
+                    break;
+                }
+                case(4):{}
+                case(5):
+                {
+                    tPosition.setText("Wing-back");
+                    break;
+                }
+                case(6):{}
+                case(7):{}
+                case(8):
+                {
+                    tPosition.setText("Centre Midfield");
+                    break;
+                }
+                case(9):{}
+                case(10):
+                {
+                    tPosition.setText("Centre Forward");
+                    break;
+                }
             }
         }
         else
@@ -353,6 +395,8 @@ public class PlayerViewActivity extends AppCompatActivity implements View.OnClic
             tNumRedCards.setText("");
             tPosition.setText("");
             imPlayerPic.setImageResource(R.drawable.silhouette);
+
+
         }
     }
 
