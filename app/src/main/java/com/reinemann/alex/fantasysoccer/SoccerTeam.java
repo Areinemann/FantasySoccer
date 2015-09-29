@@ -1,15 +1,25 @@
 package com.reinemann.alex.fantasysoccer;
 
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+
+import java.io.Serializable;
 import java.util.Hashtable;
 
 /**
  * Created by Alex on 9/26/2015.
  */
-public class SoccerTeam {
+public class SoccerTeam implements Serializable {
 
     protected   Hashtable<String,SoccerPlayer> players = new Hashtable<>();
     private     String teamName;
-    private     int numPLayers;
+    private     int numPlayers;
+
+    private     int numWins;
+    private     int numLosses;
+    private     int numDraws;
+
+    private     Drawable teamPic;
 
     /**
      * SoccerTeam constructor.  The parameter is copied in. Remaining field
@@ -17,10 +27,11 @@ public class SoccerTeam {
      *
      * @param name the name of the team to create.
      */
-    public SoccerTeam(String name)
+    public SoccerTeam(String name, Drawable instImage)
     {
-        numPLayers = 0;
+        numPlayers = 0;
         teamName = name;
+        teamPic = instImage;
     }
 
     //Get methods
@@ -30,15 +41,49 @@ public class SoccerTeam {
         return teamName;
     }
 
-    //TODO
     public SoccerPlayer getPlayer(String key)
     {
         return players.get(key);
     }
 
-    public int getNumPLayers()
+    public int getNumPlayers()
     {
-        return numPLayers;
+        return numPlayers;
+    }
+
+    public int getNumWins()
+    {
+        return numWins;
+    }
+
+    public int getNumLosses()
+    {
+        return numLosses;
+    }
+
+    public int getNumDraws()
+    {
+        return numDraws;
+    }
+
+    public SoccerPlayer getPlayer(int position)
+    {
+        int i = 0;
+        SoccerPlayer hold = null;
+        for(SoccerPlayer sp : players.values())
+        {
+            if(i == position)
+            {
+                hold = sp;
+            }
+            i++;
+        }
+        return hold;
+    }
+
+    public Drawable getTeamPic()
+    {
+        return teamPic;
     }
 
     /**
@@ -63,12 +108,30 @@ public class SoccerTeam {
         {
             players.put(key, new SoccerPlayer(first, last, uniform, position));
 
-            numPLayers++;
+            numPlayers++;
 
             return true;
         }
 
 
+    }
+
+    public boolean addPlayer(SoccerPlayer sp)
+    {
+        String key = sp.getLastName() + sp.getFirstName();
+
+        if(players.containsKey(key))
+        {
+            return false;
+        }
+        else
+        {
+            players.put(key, sp);
+
+            numPlayers++;
+
+            return true;
+        }
     }
 
     /**
@@ -85,13 +148,33 @@ public class SoccerTeam {
         if(players.containsKey(key))
         {
             players.remove(key);
-            numPLayers--;
+            numPlayers--;
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public void increaseWins()
+    {
+        numWins++;
+    }
+
+    public void increaseLosses()
+    {
+        numLosses++;
+    }
+
+    public void increaseDraws()
+    {
+        numDraws++;
+    }
+
+    public void setTeamPic(Drawable newPic)
+    {
+        teamPic = newPic;
     }
 
 

@@ -23,25 +23,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <Spinner
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/teamList"
-                    android:spinnerMode="dropdown"
-                    android:dropDownWidth="match_parent"
-                    android:scrollIndicators="left"
-                    android:focusableInTouchMode="false" />
+                    android:id="@+id/teamName"
+                    android:textSize="60dp"
+                    android:text="New text" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/teamName"
-                    android:textSize="30dp" />
+                    android:text="Cycle Teams"
+                    android:id="@+id/bCycleTeams"
+                    android:textSize="25dp" />
             </TableRow>
 
         </TableLayout>
@@ -56,8 +55,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
@@ -66,9 +64,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Uniform #"
-                android:id="@+id/uniformNumber"
-                android:layout_column="0"
+                android:text="# of Wins"
+                android:id="@+id/teamWins"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="# of Losses"
+                android:id="@+id/teamLosses"
                 android:layout_weight="1"
                 android:textSize="30dp"
                 android:textAlignment="center" />
@@ -76,17 +82,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="# of Goals"
-                android:id="@+id/playerGoals"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# of Assists"
-                android:id="@+id/playerAssists"
+                android:text="# of Draws"
+                android:id="@+id/teamDraws"
                 android:layout_weight="1"
                 android:textSize="30dp"
                 android:textAlignment="center" />
@@ -94,18 +91,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="# of Shots"
-                android:id="@+id/playerShots"
-                android:layout_weight="1"
-                android:textSize="30dp"
-                android:textAlignment="center"
-                android:layout_column="3" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# of Saves"
-                android:id="@+id/playerSaves"
+                android:text="# of Players"
+                android:id="@+id/teamPLayers"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textSize="30dp" />
@@ -118,124 +105,51 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goals +"
-                android:id="@+id/bIncreaseGoals"
-                android:layout_column="1"
+                android:text="Wins +"
+                android:id="@+id/bIncreaseWins"
                 android:layout_weight="1"
                 android:textSize="25dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Assists +"
-                android:id="@+id/bIncreaseAssists"
+                android:text="Losses +"
+                android:id="@+id/bIncreaseLosses"
                 android:layout_weight="1"
                 android:textSize="25dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shots +"
-                android:id="@+id/bIncreaseShots"
+                android:text="Draws +"
+                android:id="@+id/bIncreaseDraws"
                 android:layout_weight="1"
                 android:textSize="25dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Saves +"
-                android:id="@+id/bIncreaseSaves"
-                android:layout_weight="1"
-                android:textSize="25dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="# of Fouls"
-                android:id="@+id/playerFouls"
-                android:textAlignment="center"
-                android:textSize="30dp"
+                android:id="@+id/spacer"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# of YellowCards"
-                android:id="@+id/playerYellowCards"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="# of Red Cards"
-                android:id="@+id/playerRedCards"
-                android:textSize="30dp"
-                android:textAlignment="center"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/playerPosition"
-                android:layout_weight="1"
-                android:text="Position"
-                android:textAlignment="center"
-                android:textSize="30dp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fouls +"
-                android:id="@+id/bIncreaseFouls"
-                android:layout_weight="1"
-                android:textSize="25dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yellow Cards +"
-                android:id="@+id/bIncreaseYellowCards"
-                android:layout_weight="1"
-                android:textSize="25dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Red Cards +"
-                android:id="@+id/bIncreaseRedCards"
-                android:layout_weight="1"
-                android:textSize="25dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Position"
-                android:id="@+id/bChangePosition"
-                android:layout_weight="1"
-                android:textSize="25dp" />
         </TableRow>
 
     </TableLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom|right"
-        android:layout_weight="1.5">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/newTeamName"
+            android:lines="1"
+            android:enabled="true"
+            android:layout_weight="5"
+            android:hint="New Team Name" />
 
         <Button
             android:layout_width="wrap_content"
@@ -244,6 +158,14 @@
             android:id="@+id/bAddTeam"
             android:layout_gravity="bottom|right"
             android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|right"
+        android:layout_weight="3">
 
         <Button
             android:layout_width="wrap_content"
@@ -256,17 +178,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Player"
-            android:id="@+id/bAddPlayer"
+            android:text="View Players"
+            android:id="@+id/bViewPlayers"
             android:layout_gravity="bottom|right"
-            android:textSize="20dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remove Player"
-            android:id="@+id/bRemovePlayer"
-            android:layout_gravity="bottom"
             android:textSize="20dp" />
 
     </LinearLayout>

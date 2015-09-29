@@ -1,9 +1,11 @@
 package com.reinemann.alex.fantasysoccer;
 
+import java.io.Serializable;
+
 /**
  * Created by Alex on 9/26/2015.
  */
-public class SoccerPlayer {
+public class SoccerPlayer implements Serializable {
 
     // instance variables
     private String firstName; // first name
@@ -28,8 +30,8 @@ public class SoccerPlayer {
      * @param uniform uniform number
      */
     public SoccerPlayer(String first, String last, int uniform, int position) {
-        firstName = first;
-        lastName = last;
+        firstName = first.trim();
+        lastName = last.trim();
         uniformNum = uniform;
 
         goalsScored = 0;

@@ -23,23 +23,58 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
-                <Spinner
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/teamList"
-                    android:layout_weight="1" />
+                    android:text="New Text"
+                    android:id="@+id/teamName"
+                    android:textSize="50dp"
+                    android:textIsSelectable="false" />
+
             </TableRow>
 
-            <TableLayout
-                android:layout_width="wrap_content"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tableRow">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/PlayerName"
+                    android:textSize="50dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <Spinner
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/playerList" />
-            </TableLayout>
+                    android:text="Cycle teams"
+                    android:id="@+id/cycleTeams"
+                    android:layout_weight="1"
+                    android:textSize="25dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cycle Players"
+                    android:id="@+id/cyclePlayers"
+                    android:layout_weight="1"
+                    android:textSize="25dp" />
+            </TableRow>
+
         </TableLayout>
 
         <ImageView
@@ -233,10 +268,21 @@
         android:layout_height="match_parent"
         android:layout_weight="1.5">
 
-        <Spinner
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/SwitchTeamSelector" />
+            android:text="New Text"
+            android:id="@+id/teamToChangeTo"
+            android:layout_weight="4"
+            android:textSize="30dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cycle Switching Team"
+            android:id="@+id/cycleSwitchingTeam"
+            android:layout_weight="1"
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -245,6 +291,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="bottom|right"
         android:layout_weight="1.5">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/goBack"
+            android:layout_gravity="bottom"
+            android:textSize="20dp" />
 
         <Button
             android:layout_width="wrap_content"

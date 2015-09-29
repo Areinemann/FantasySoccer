@@ -79,21 +79,20 @@ public class AddPlayerActivity extends AppCompatActivity implements View.OnClick
             String firstName = etFirstName.getText().toString();
             String lastName = etLastName.getText().toString();
             int uniform =  Integer.parseInt(etUniform.getText().toString());
-            int position = 0;
+            int position = 1;
 
-            if(MainActivity.teams.get(teamToUse).addPLayer(firstName, lastName, uniform, position))
-            {
-                Toast.makeText(AddPlayerActivity.this, "Player successfully added!",Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(AddPlayerActivity.this, "Player was not added added!",Toast.LENGTH_SHORT).show();
-            }
+            i.putExtra("New Player", new SoccerPlayer(firstName,lastName,uniform,position));
+
+            setResult(50,i);
+
+            finish();
+
 
         }
 
         else if(bClose.isPressed())
         {
+            setResult(51);
             finish();
         }
     }
