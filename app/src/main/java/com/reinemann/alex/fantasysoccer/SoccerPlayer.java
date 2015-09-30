@@ -20,6 +20,8 @@ public class SoccerPlayer implements Serializable {
     private int yellowCards; // yellow cards shown
     private int redCards; // red cards shown
     private int playerPic;
+    private int currentPosition;
+    private int active;
 
     /**
      * SoccerPlayer constructor.  The parameters are copied in. Remaining fields
@@ -43,6 +45,8 @@ public class SoccerPlayer implements Serializable {
         yellowCards = 0;
         redCards = 0;
         playerPic = image;
+        currentPosition = -1;
+        active = 0;
     }
 
     // "get methods"
@@ -90,6 +94,15 @@ public class SoccerPlayer implements Serializable {
         return playerPic;
     }
 
+    public int getCurrentPosition()
+    {
+        return currentPosition;
+    }
+    public int getActive()
+    {
+        return active;
+    }
+
     // change uniform number to new one
     public void changeUniform(int newNumber) {
         uniformNum = newNumber;
@@ -125,6 +138,14 @@ public class SoccerPlayer implements Serializable {
     public void setPlayerPic(int image)
     {
         playerPic = image;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+    public void setActive(int newActive)
+    {
+        active = newActive;
     }
 
     public boolean equals(SoccerPlayer sp)

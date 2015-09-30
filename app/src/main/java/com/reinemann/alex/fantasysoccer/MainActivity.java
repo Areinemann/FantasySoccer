@@ -17,9 +17,9 @@ import java.util.Hashtable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static Hashtable<String, SoccerTeam> teams = new Hashtable<>();
-    private int numTeams;
-    private ArrayList<String> teamNames;
+    public static Hashtable<String, SoccerTeam> teams = new Hashtable<>();
+    public static int numTeams;
+    public static ArrayList<String> teamNames;
 
     private String currentTeam;
     private int    currentPosition;
@@ -163,16 +163,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(bViewPlayers.isPressed())
         {
             Intent intent = new Intent(MainActivity.this,PlayerViewActivity.class);
-            for(int i = 0;i < numTeams; i++)
-            {
-                intent.putExtra(teamNames.get(i),teams.get(teamNames.get(i)));
-            }
+
             intent.putExtra("Current", currentTeam);
-            intent.putExtra("Team Array", teamNames);
             intent.putExtra("CurrentPos", currentPosition);
             intent.putExtra("NumTeams", numTeams);
 
-            startActivityForResult(intent, 110);
+            startActivity(intent);
         }
         else if(bAddTeam.isPressed())
         {
@@ -216,6 +212,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             Intent intent = new Intent(MainActivity.this,SoccerFieldActivity.class);
 
+            intent.putExtra("Current Pos", currentPosition);
+            intent.putExtra("Current Team", currentTeam);
+
             startActivity(intent);
         }
 
@@ -247,23 +246,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imTeamPic.setImageResource(R.drawable.seriph);
         }
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 110)
-        {
-            if(resultCode == 112)
-            {
-                teams.clear();
-
-                for(int i = 0; i < numTeams; i++)
-                {
-                    teams.put(teamNames.get(i), (SoccerTeam) data.getSerializableExtra(teamNames.get(i)));
-                }
-            }
-        }
-    }
 }
+
+

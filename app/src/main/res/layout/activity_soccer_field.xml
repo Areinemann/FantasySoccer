@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -11,12 +11,13 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="fill_horizontal">
 
@@ -26,20 +27,22 @@
                 android:text="New Text"
                 android:id="@+id/team1View"
                 android:gravity="center"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Switch Team"
                 android:id="@+id/bSwitchTeam1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="fill_horizontal">
 
@@ -50,22 +53,179 @@
                 android:id="@+id/team2View"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Switch Team"
                 android:id="@+id/bSwitchTeam2"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:layout_weight="1" />
         </LinearLayout>
+
     </LinearLayout>
 
-    <com.reinemann.ales.fantasysoccer.SoccerFieldView
+    <com.reinemann.alex.fantasysoccer.SoccerFieldView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/surfaceView"
+        android:id="@+id/Field"
         android:background="#2a6613"
-        />
+        android:layout_weight="1"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true">
 
-</LinearLayout>
+
+    </com.reinemann.alex.fantasysoccer.SoccerFieldView>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team1Keeper"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxHeight="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team2Keeper"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_alignTop="@+id/team1Keeper"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Game"
+        android:id="@+id/play"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/goBack"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/play"
+        android:layout_toStartOf="@+id/play" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team1Sweep"
+        android:layout_marginLeft="92dp"
+        android:layout_marginStart="92dp"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_alignTop="@+id/team1Keeper"
+        android:layout_toRightOf="@+id/team1Keeper"
+        android:layout_toEndOf="@+id/team1Keeper"
+        android:focusableInTouchMode="true"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team2Sweep"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_below="@+id/team1Wing"
+        android:layout_alignLeft="@+id/goBack"
+        android:layout_alignStart="@+id/goBack"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team1Wing"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_marginBottom="59dp"
+        android:layout_above="@+id/team1Sweep"
+        android:layout_alignLeft="@+id/team1Sweep"
+        android:layout_alignStart="@+id/team1Sweep"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team2Wing"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_alignTop="@+id/team1Wing"
+        android:layout_alignLeft="@+id/team2Sweep"
+        android:layout_alignStart="@+id/team2Sweep"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team1Corner"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/team1Sweep"
+        android:layout_alignLeft="@+id/team1Sweep"
+        android:layout_alignStart="@+id/team1Sweep"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team2Corner"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_alignTop="@+id/team1Corner"
+        android:layout_alignLeft="@+id/team2Sweep"
+        android:layout_alignStart="@+id/team2Sweep"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team1For"
+        android:layout_marginLeft="73dp"
+        android:layout_marginStart="73dp"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_below="@+id/team1Wing"
+        android:layout_toRightOf="@+id/team1Sweep"
+        android:layout_toEndOf="@+id/team1Sweep"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/team2For"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_marginRight="131dp"
+        android:layout_marginEnd="131dp"
+        android:layout_below="@+id/team1Wing"
+        android:layout_toLeftOf="@+id/team2Sweep"
+        android:layout_toStartOf="@+id/team2Sweep"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp" />
+
+</RelativeLayout>
